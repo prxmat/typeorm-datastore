@@ -2,7 +2,7 @@ import * as Datastore from "@google-cloud/datastore";
 import * as DatastoreEntity from "@google-cloud/datastore/build/src/entity";
 import {BaseEntity} from "./BaseEntity";
 import {MAX_ENTITIES} from "./constants";
-import {TypeDatastoreOrmError} from "./errors/typeDatastoreOrmError";
+import {TypeDatastoreOrmError} from "./errors/TypeDatastoreOrmError";
 import {IncrementHelper} from "./helpers/IncrementHelper";
 import {IndexResaveHelper} from "./helpers/IndexResaveHelper";
 import {Query} from "./queries/Query";
