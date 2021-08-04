@@ -6,7 +6,8 @@
   "types": "build/index.d.ts",
   "scripts": {
     "test": "echo 1",
-    "deploy:build": "tsc"
+    "deploy:build": "tsc",
+    "deploy:patch": "npm version patch"
   },
   "repository": {
     "type": "git",
