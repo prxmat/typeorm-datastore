@@ -1,0 +1,36 @@
+import { IEntityCompositeIndexList, IEntityFieldIndex, IEntityFieldMetaOptions, IEntityMetaOptions } from "./types";
+declare class DecoratorMeta {
+    entityMetaMap: Map<object, IEntityMetaOptions>;
+    entityFieldMetaListMap: Map<object, Map<string, IEntityFieldMetaOptions>>;
+    compositeIndexListMap: Map<object, IEntityCompositeIndexList>;
+    entityHookOfBeforeInsertMap: Map<object, string | symbol>;
+    entityHookOfBeforeUpsertMap: Map<object, string | symbol>;
+    entityHookOfBeforeUpdateMap: Map<object, string | symbol>;
+    entityHookOfBeforeDeleteMap: Map<object, string | symbol>;
+    entityHookOfAfterLoadMap: Map<object, string | symbol>;
+    addEntityMeta(classObject: object, options: IEntityMetaOptions): void;
+    hasEntityMeta(classObject: object): boolean;
+    getEntityMeta(classObject: object): IEntityMetaOptions;
+    addEntityCompositeIndex(classObject: object, fields: IEntityFieldIndex, hasAncestor: boolean): void;
+    getEntityCompositeIndexList(classObject: object): IEntityCompositeIndexList;
+    addEntityFieldMeta(classObject: object, fieldName: string, options: IEntityFieldMetaOptions): void;
+    hasEntityFieldMetaList(classObject: object): boolean;
+    hasEntityFieldMeta(classObject: object, fieldName: string): boolean;
+    getEntityFieldMetaList(classObject: object): Map<string, IEntityFieldMetaOptions>;
+    getEntityFieldNames(classObject: object): string[];
+    addHookOfBeforeInsert(classObject: object, propertyKey: string | symbol): void;
+    getHookOfBeforeInsert(classObject: object): string | symbol | undefined;
+    addHookOfBeforeUpsert(classObject: object, propertyKey: string | symbol): void;
+    getHookOfBeforeUpsert(classObject: object): string | symbol | undefined;
+    addHookOfBeforeUpdate(classObject: object, propertyKey: string | symbol): void;
+    getHookOfBeforeUpdate(classObject: object): string | symbol | undefined;
+    addHookOfBeforeDelete(classObject: object, propertyKey: string | symbol): void;
+    getHookOfBeforeDelete(classObject: object): string | symbol | undefined;
+    addHookOfAfterLoad(classObject: object, propertyKey: string | symbol): void;
+    getHookOfAfterLoad(classObject: object): string | symbol | undefined;
+    mergeHooks(classObject: object, subClassObject: object): void;
+    isGenerateId(classObject: object): boolean;
+    getExcludeFromIndexes(target: object): string[];
+}
+export declare const decoratorMeta: DecoratorMeta;
+export {};

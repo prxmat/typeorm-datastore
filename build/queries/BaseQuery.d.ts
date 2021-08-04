@@ -1,0 +1,32 @@
+import * as Datastore from "@google-cloud/datastore";
+import { Query } from "@google-cloud/datastore/build/src";
+import * as DatastoreEntity from "@google-cloud/datastore/build/src/entity";
+import * as DatastoreQuery from "@google-cloud/datastore/build/src/query";
+import { BaseEntity } from "../BaseEntity";
+import { IBaseQueryParams, IFilterValue, IOrderOptions } from "../types";
+import { QueryOperator } from "./QueryOperator";
+export declare class BaseQuery<KT extends BaseEntity> {
+    readonly datastore: Datastore.Datastore;
+    readonly namespace: string | undefined;
+    readonly kind: string;
+    readonly query: Query;
+    lastRunQueryInfo: DatastoreQuery.RunQueryInfo | undefined;
+    private _ancestorKey?;
+    private _endCursor;
+    constructor(options: IBaseQueryParams);
+    hasNextPage(): boolean;
+    filter<K extends keyof KT>(fieldName: K, expression: (query: QueryOperator<IFilterValue<KT[K]>>) => any): this;
+    filter<K extends keyof KT>(fieldName: K, value: IFilterValue<KT[K]>): this;
+    filterKey(expression: (query: QueryOperator<DatastoreEntity.entity.Key>) => any): this;
+    filterKey(value: DatastoreEntity.entity.Key): this;
+    getEndCursor(): string | undefined;
+    setEndCursor(endCursor: string): this;
+    setAncestorKey(key: DatastoreEntity.entity.Key): this;
+    limit(value: number): this;
+    offset(value: number): this;
+    groupBy<K extends keyof KT>(fieldName: K): this;
+    order<K extends keyof KT>(fieldName: K, orderOptions?: IOrderOptions): this;
+    findOne(): Promise<any | undefined>;
+    findMany(): Promise<any[]>;
+    getSql(): string;
+}

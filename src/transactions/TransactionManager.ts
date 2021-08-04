@@ -1,6 +1,6 @@
 import * as Datastore from "@google-cloud/datastore";
 import {errorCodes} from "../enums/errorCodes";
-import {tsDatastoreOrm} from "../tsDatastoreOrm";
+import {typeDatastoreOrm} from "../typeDatastoreOrm";
 import {ITransactionManagerParams} from "../types";
 import {timeout, updateStack} from "../utils";
 import {Session} from "./Session";
@@ -25,7 +25,7 @@ export class TransactionManager {
         let totalRetry = 0;
         let hasCommitted = false;
 
-        const friendlyErrorStack = tsDatastoreOrm.getFriendlyErrorStack();
+        const friendlyErrorStack = typeDatastoreOrm.getFriendlyErrorStack();
 
         do {
             // start transaction
