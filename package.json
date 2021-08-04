@@ -1,0 +1,28 @@
+{
+  "name": "typeorm-datastore",
+  "version": "0.0.1",
+  "description": "",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "echo 1",
+    "deploy:build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prxmat/typeorm-datastore.git"
+  },
+  "keywords": [
+    "datastore"
+  ],
+  "author": "prxmat <Mathieu Roux>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/prxmat/typeorm-datastore/issues"
+  },
+  "homepage": "https://github.com/prxmat/typeorm-datastore#readme",
+  "devDependencies": {
+    "@google-cloud/datastore": "^6.4.7",
+    "class-validator": "^0.13.1",
+    "typescript": "^4.3.5"
+  }
+}
