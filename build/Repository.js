@@ -19,7 +19,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Repository = void 0;
 const BaseEntity_1 = require("./BaseEntity");
 const constants_1 = require("./constants");
-const typeDatastoreOrmError_1 = require("./errors/typeDatastoreOrmError");
+const TypeDatastoreOrmError_1 = require("./errors/TypeDatastoreOrmError");
 const IncrementHelper_1 = require("./helpers/IncrementHelper");
 const IndexResaveHelper_1 = require("./helpers/IndexResaveHelper");
 const Query_1 = require("./queries/Query");
@@ -306,7 +306,7 @@ class Repository {
                 // save the auto generate entities
                 if (isGenerateId) {
                     if (generateEntities.has(entity)) {
-                        throw new typeDatastoreOrmError_1.TypeDatastoreOrmError(`You cannot insert the same entity.`);
+                        throw new TypeDatastoreOrmError_1.TypeDatastoreOrmError(`You cannot insert the same entity.`);
                     }
                     generateEntities.set(entity, insertData.key);
                 }
