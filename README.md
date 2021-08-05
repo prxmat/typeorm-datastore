@@ -29,12 +29,6 @@ export class User extends BaseEntity {
 
     @Field({index: true, excludeFromIndexes: ["object.name"]})
     public object: any = {};
-
-    @Field()
-    public undefined: undefined = undefined;
-
-    @Field()
-    public null: null = null;
 }
 
 @CompositeIndex({number: "desc", name: "desc"})
@@ -64,19 +58,14 @@ export class TaskGroup extends BaseEntity {
 
 # Example: general
 ```typescript
-async function generalExamples() {
+async function examples() {
     const connection = await createConnection({keyFilename: "./datastoreServiceAccount.json"});
     const repository = connection.getRepository(User, {namespace: "mynamespace", kind: "NewUser"});
     const taskGroupRepository = connection.getRepository(TaskGroup);
-    const datastore = connection.datastore; // access to native datastore
 
     const user1 = repository.create();
     await repository.insert(user1);
     const key = user1.getKey(); // the native datastore key
-
-    // the kind and namespace is attached to entity, but they are not enumerable by default
-    // use @Entity({enumerable: true}) such that if you console.log(entity), _kind and _namespace will be displayed as well
-    const {_kind, _namespace, _ancestorKey} = user1;
 
     // simple query
     const findUser1 = repository.findOne(user1._id);
