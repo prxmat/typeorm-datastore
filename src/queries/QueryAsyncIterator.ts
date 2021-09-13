@@ -53,7 +53,7 @@ export class QueryAsyncIterator<T extends typeof BaseEntity> {
 
                     return {value: undefined as any, done: true};
 
-                } catch (err) {
+                } catch (err: any) {
                     throw Object.assign(err, friendlyErrorStack && {stack: updateStack(friendlyErrorStack, err)});
                 }
             },

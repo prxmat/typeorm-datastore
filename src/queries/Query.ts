@@ -1,4 +1,4 @@
-import { QueryAsyncIterator } from './QueryAsyncterator';
+import { QueryAsyncIterator } from './QueryAsyncIterator';
 import {BaseEntity} from "../BaseEntity";
 import {MAX_ENTITIES} from "../constants";
 import {typeDatastoreOrm} from "../typeDatastoreOrm";
