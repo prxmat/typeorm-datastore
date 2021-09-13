@@ -69,7 +69,7 @@ export class IndexResaveHelper<T extends typeof BaseEntity> {
             const friendlyErrorStack = typeDatastoreOrm.getFriendlyErrorStack();
             try {
                 const [mergeResult] = await this.datastore.merge(updateDataList);
-            } catch (err) {
+            } catch (err: any) {
                 throw Object.assign(err, friendlyErrorStack && {stack: updateStack(friendlyErrorStack, err)});
             }
         }
