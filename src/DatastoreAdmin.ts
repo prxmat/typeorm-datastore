@@ -94,7 +94,7 @@ export class DatastoreAdmin {
         try {
             const [results] = await this.datastore.runQuery(query);
             return results;
-        } catch (err) {
+        } catch (err: any) {
             throw Object.assign(err, friendlyErrorStack && {stack: updateStack(friendlyErrorStack, err)});
         }
     }

@@ -145,7 +145,7 @@ export class BaseQuery<KT extends BaseEntity> {
                 return data;
             }
 
-        } catch (err) {
+        } catch (err: any) {
             throw Object.assign(err, friendlyErrorStack && {stack: updateStack(friendlyErrorStack, err)});
         }
 
@@ -168,7 +168,7 @@ export class BaseQuery<KT extends BaseEntity> {
 
             return [];
 
-        } catch (err) {
+        } catch (err: any) {
             throw Object.assign(err, friendlyErrorStack && {stack: updateStack(friendlyErrorStack, err)});
         }
     }

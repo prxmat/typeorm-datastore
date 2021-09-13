@@ -48,14 +48,14 @@ export class TransactionManager {
                 // break the retry loop
                 break;
 
-            } catch (err) {
+            } catch (err: any) {
                 // if we don't rollback, it will be faster
                 hasCommitted = false;
 
                 // rollback for any type of error
                 try {
                     await session.rollback();
-                } catch (err) {
+                } catch (err: any) {
                     // ignore rollback error here
                 }
 

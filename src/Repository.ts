@@ -49,7 +49,7 @@ export class Repository<T extends typeof BaseEntity> {
             if (response) {
                 return await typeDatastoreOrm.loadEntity(this.classObject, response);
             }
-        } catch (err) {
+        } catch (err:any) {
             throw Object.assign(err, friendlyErrorStack && {stack: updateStack(friendlyErrorStack, err)});
         }
     }
@@ -72,7 +72,7 @@ export class Repository<T extends typeof BaseEntity> {
             }
 
             return entities;
-        } catch (err) {
+        } catch (err: any) {
             throw Object.assign(err, friendlyErrorStack && {stack: updateStack(friendlyErrorStack, err)});
         }
     }
@@ -146,7 +146,7 @@ export class Repository<T extends typeof BaseEntity> {
             const key = this.datastore.key({namespace: this.namespace, path: [this.kind]});
             const [ids] = await this.datastore.allocateIds(key, total);
             return ids.map(x => Number(x.id));
-        } catch (err) {
+        } catch (err: any) {
             throw Object.assign(err, friendlyErrorStack && {stack: updateStack(friendlyErrorStack, err)});
         }
     }
@@ -189,7 +189,7 @@ export class Repository<T extends typeof BaseEntity> {
         const friendlyErrorStack = typeDatastoreOrm.getFriendlyErrorStack();
         try {
             const [updateResult] = await this.datastore.update(updateDataList);
-        } catch (err) {
+        } catch (err: any) {
             throw Object.assign(err, friendlyErrorStack && {stack: updateStack(friendlyErrorStack, err)});
         }
 
@@ -215,7 +215,7 @@ export class Repository<T extends typeof BaseEntity> {
     //     try {
     //         const [updateResult] = await this.datastore.merge(updateDataList);
     //         return entities;
-    //     } catch (err) {
+    //     } catch (err: any) {
     //         throw Object.assign(err, friendlyErrorStack && {stack: updateStack(friendlyErrorStack, err)});
     //     }
     // }
@@ -240,7 +240,7 @@ export class Repository<T extends typeof BaseEntity> {
         try {
             const [deleteResult] = await this.datastore.delete(keys);
             return entities;
-        } catch (err) {
+        } catch (err: any) {
             throw Object.assign(err, friendlyErrorStack && {stack: updateStack(friendlyErrorStack, err)});
         }
     }
@@ -343,7 +343,7 @@ export class Repository<T extends typeof BaseEntity> {
 
             return entities;
 
-        } catch (err) {
+        } catch (err: any) {
             throw Object.assign(err, friendlyErrorStack && {stack: updateStack(friendlyErrorStack, err)});
         }
     }

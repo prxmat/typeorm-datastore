@@ -1,7 +1,7 @@
   
 import {BaseEntity} from "./BaseEntity";
 import {CompositeIndexExporter} from "./compositeIndexExporter";
-import {Connection} from "./Connection";
+import {Connection} from "./connection";
 import {createConnection} from "./createConnection";
 import {DatastoreAdmin} from "./DatastoreAdmin";
 import {CompositeIndex} from "./decorators/CompositeIndex";
