@@ -1,7 +1,48 @@
 # typeorm-datastore
 
 
-# Example: define Entity
+## @Entity()
+
+Use to decorate a class that define an Entity, a document in a kind  
+
+### options  
+
+- kind: string;
+- namespace: string | undefined;
+- excludeFromIndexes: string[];
+- enumerable: boolean;
+
+> The class must contains at least a @Field() _id.
+
+## @Field()
+
+Use to decorate a class property that define a Field, a property in a document  
+
+### options
+
+- generateId: boolean;
+- index: boolean;
+- excludeFromIndexes: string[];
+
+### Field "_id"
+
+This field is mandatory for every entity. it represents the datastore id or name.  
+To bind it to the datastore id, simply define the class property as number.  
+
+```typescript
+    @Field()
+    public _id: number = 0; // bound to datastore id
+```
+
+To bind it to the datastore naùe, simply define the class property as string.  
+
+```typescript
+    @Field()
+    public _id: string; // bound to datastore name
+```
+
+## Example: define Entity
+
 ```typescript
 import { BaseEntity, CompositeIndex, CompositeIndexExporter, createConnection, Entity, Field, 
 typeDatastoreOrm, TypeDatastoreOrmError, BeforeDelete, BeforeInsert, BeforeUpdate, BeforeUpsert, AfterLoad} from "typeorm-datastore";
@@ -55,8 +96,8 @@ export class TaskGroup extends BaseEntity {
 }
 ```
 
+## Example: general
 
-# Example: general
 ```typescript
 async function examples() {
     const connection = await createConnection({keyFilename: "./datastoreServiceAccount.json"});
@@ -85,7 +126,8 @@ async function examples() {
 }
 ```
 
-# Example: admin
+## Example: admin
+
 ```typescript
 async function adminExamples() {
     const connection = await createConnection({clientEmail: "", privateKey: ""});
@@ -95,7 +137,8 @@ async function adminExamples() {
 }
 ```
 
-# Example: query
+## Example: query
+
 ```typescript
 async function queryExamples() {
     const connection = await createConnection({clientEmail: "", privateKey: ""});
