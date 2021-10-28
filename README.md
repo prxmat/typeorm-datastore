@@ -5,20 +5,32 @@
 
 Use to decorate a class that define an Entity, a document in a kind  
 
-### options  
+### Options  
 
-- kind: string;
-- namespace: string | undefined;
-- excludeFromIndexes: string[];
-- enumerable: boolean;
+#### - kind: string
 
+Datastore kind name
+
+#### - namespace: string | undefined
+
+Datastore namespace name
+
+#### - excludeFromIndexes: string[]  
+
+...
+
+#### - enumerable: boolean  
+
+if true, it'll allow internal fields to be enumerated: "_kind", "_namespace" and "_ancestorKey"
+
+> Note:  
 > The class must contains at least a @Field() _id.
 
 ## @Field()
 
 Use to decorate a class property that define a Field, a property in a document  
 
-### options
+### Options
 
 - generateId: boolean;
 - index: boolean;
