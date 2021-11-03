@@ -139,3 +139,39 @@ async function queryExamples() {
     const keys = await userRepository.selectKeyQuery().findMany();
 }
 ```
+
+#Example transaction manager
+```javascript
+async function transactionExamples() {
+    const connection = await createConnection({clientEmail: "", privateKey: ""});
+    const userRepository = connection.getRepository(User);
+
+    const transactionManager1 = connection.getTransactionManager();
+
+    // customize behavior of the transaction
+    // for readonly transaction, please refer to datastore documentation
+    const transactionManager2 = connection.getTransactionManager({maxRetry: 3, retryDelay: 200, readOnly: true});
+
+    const result = await transactionManager1.start(async (session) => {
+        const findEntity1 = await userRepository.findOneWithSession(1, session);
+        const findEntity2 = await userRepository.queryWithSession(session).findOne();
+        const ids = await userRepository.allocateIdsWithSession(10, session);
+
+        if (findEntity2) {
+            // only the last operation of the same entity will applies only
+            userRepository.insertWithSession(findEntity2, session);
+            userRepository.updateWithSession(findEntity2, session);
+            userRepository.upsertWithSession(findEntity2, session);
+            userRepository.deleteWithSession(findEntity2, session);
+        } else {
+            await session.rollback();
+        }
+
+        return true;
+    });
+
+    // value === true in above case
+    const {value, hasCommitted, totalRetry} = result;
+}
+```
+
