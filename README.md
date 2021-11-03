@@ -140,7 +140,7 @@ async function queryExamples() {
 }
 ```
 
-#Example transaction manager
+# Example: transaction manager
 ```javascript
 async function transactionExamples() {
     const connection = await createConnection({clientEmail: "", privateKey: ""});
